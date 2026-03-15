@@ -13,7 +13,7 @@ It is built using **C#**, **Playwright**, and **SpecFlow** (BDD), demonstrating 
 
 ## Debugging & Tracing (CI/CD Ready)
 
-To optimize CI/CD storage and streamline debugging, this framework utilizes **Playwright Tracing** dynamically:
+To optimize storage and streamline debugging, this framework utilizes **Playwright Tracing** dynamically:
 * Traces are captured in the background during test execution.
 * The framework evaluates the test outcome at the end of the scenario. **A trace `.zip` file is only saved to the disk if the test fails.**
 * This trace captures full DOM snapshots, console logs, network traffic, and C# source code execution, allowing developers to "time-travel" through the exact moment of failure without needing to reproduce it locally.
@@ -32,10 +32,10 @@ Before running the tests, ensure you have the following installed on your machin
 ## How to Install
 
 1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/ericsacchetto/Playwright.git](https://github.com/ericsacchetto/Playwright.git)
-   cd PlaywrightYouTube
-   ```
+  ```bash
+  git clone https://github.com/ericsacchetto/Playwright.git
+  cd PlaywrightYouTube
+  ```
 
 2. **Restore NuGet packages:**
   ```bash
@@ -55,6 +55,7 @@ Before running the tests, ensure you have the following installed on your machin
 ## Project Structure
 
 The framework is strictly organized by separation of concerns:
+```text
 PlaywrightYouTube/
 │
 ├── Features/              # Gherkin (.feature) files defining test scenarios (BDD)
@@ -70,16 +71,19 @@ PlaywrightYouTube/
     ├── YouTubeHomePage.cs
     ├── YouTubeSearchResults.cs
     └── YouTubeVideoPlayer.cs
+```
 
 ## How to Run It
 
-**Option 1: Using the .NET CLI (Headless Mode)**
+**Option 1: Using the .NET CLI**
+
 To run the entire test suite from your terminal:
   ```bash
   dotnet test
   ```
 
 **Option 2: Using Visual Studio Test Explorer (UI Mode)**
+
 If you want to watch the browser execute the tests (headed mode):
 1. Open the solution in Visual Studio.
 2. Open the Test Explorer (`Test` > `Test Explorer`).
