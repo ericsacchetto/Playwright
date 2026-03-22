@@ -1,0 +1,6 @@
+{
+    "[gherkin]": {
+        "editor.formatOnSave": true
+    },
+    "languageServerExample.trace.server": "verbose"
+}

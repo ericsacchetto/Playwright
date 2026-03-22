@@ -78,7 +78,7 @@ namespace PlaywrightYouTube.Scenarios
 #line 3
   #line hidden
 #line 4
-    testRunner.Given("I am on search results for \"Powershield\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+    testRunner.Given("I am on search results for \"Batman\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
         }
         
@@ -103,7 +103,7 @@ namespace PlaywrightYouTube.Scenarios
   this.FeatureBackground();
 #line hidden
 #line 7
-    testRunner.When("I click on the \"Filters\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("I click on the Filters button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 8
     testRunner.Then("I should see filter options such as \"Upload date\", \"Type\", \"Duration\", and \"Featu" +
@@ -115,8 +115,8 @@ namespace PlaywrightYouTube.Scenarios
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Applying a filter narrows down results")]
-        [NUnit.Framework.TestCaseAttribute("Videos", null)]
         [NUnit.Framework.TestCaseAttribute("Under 3 minutes", null)]
+        [NUnit.Framework.TestCaseAttribute("Movies", null)]
         public void ApplyingAFilterNarrowsDownResults(string filterType, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -137,13 +137,13 @@ namespace PlaywrightYouTube.Scenarios
   this.FeatureBackground();
 #line hidden
 #line 11
-    testRunner.When("I click on the \"Filters\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("I click on the Filters button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 12
     testRunner.And(string.Format("I select the \"{0}\" filter", filterType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 13
-    testRunner.Then("the search results should be updated to reflect the applied filter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+    testRunner.Then(string.Format("the search results should be updated to reflect the \"{0}\" filter", filterType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

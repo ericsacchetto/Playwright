@@ -28,6 +28,15 @@ namespace PlaywrightYouTube.Pages
             await Expect(videoPlayer).ToBeVisibleAsync();
         }
 
+        public async Task VerifyVideoIsPlaying()
+        {
+            var isPlaying = await _page.EvaluateAsync<bool>("() => { const v = document.querySelector('video'); return !v.paused && v.currentTime > 0; }");
+            if (!isPlaying)
+            {
+                throw new Exception("The video is not playing as expected.");
+            }
+        }
+
         public async Task VerifyURLContains(string urlPart)
         {
             // Regex allows for flexible URL matching regardless of dynamic session tokens 

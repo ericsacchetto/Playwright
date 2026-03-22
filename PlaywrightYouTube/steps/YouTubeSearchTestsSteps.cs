@@ -54,6 +54,7 @@ public class YouTubeStepDefinitions
     public async Task ThenTheVideoPlayerContainerShouldBeVisible()
     {
         await _videoPlayer!.VerifyVideoPlayerVisible();
+        await _videoPlayer.VerifyVideoIsPlaying();
     }
 
     [When(@"I navigate back to the last page")]

@@ -14,13 +14,10 @@ public class YouTubeFilterTestsSteps
         _searchResults = new YouTubeSearchResults(_page);
     }
 
-    [When(@"I click on the ""(.*)"" button")]
-    public async Task WhenIClickOnTheButton(string buttonName)
+    [When(@"I click on the Filters button")]
+    public async Task WhenIClickOnTheButton()
     {
-        if (buttonName == "Filters")
-        {
-            await _searchResults!.ClickFiltersButton();
-        }
+        await _searchResults!.ClickFiltersButton();
     }
 
     [Then(@"I should see filter options such as ""(.*)"", ""(.*)"", ""(.*)"", and ""(.*)""")]
@@ -33,12 +30,27 @@ public class YouTubeFilterTestsSteps
     public async Task WhenISelectTheFilter(string filterType)
     {
         await _searchResults!.SelectFilter(filterType);
+        await _searchResults!.VerifyUrlContains("&sp=");
     }
 
-    [Then(@"the search results should be updated to reflect the applied filter")]
-    public async Task ThenTheSearchResultsShouldBeUpdatedToReflectTheAppliedFilter()
+    [Then(@"the search results should be updated to reflect the ""(.*)"" filter")]
+    public async Task ThenTheSearchResultsShouldBeUpdatedToReflectTheAppliedFilter(string filterType)
     {
-        // Verifies the page updated after applying the filter
-        await _searchResults!.VerifyResultsUpdated();
+        if (filterType.Equals("Under 3 minutes", StringComparison.OrdinalIgnoreCase))
+        {
+            await _searchResults!.VerifyUrlContains("sp=EgIYBA%253D%253D");
+            await _searchResults.WaitForProgressBarToDisappear();
+            await _searchResults.VerifyVideoDuration();
+        }
+        else if (filterType.Equals("Movies", StringComparison.OrdinalIgnoreCase))
+        {
+            await _searchResults!.VerifyUrlContains("sp=EgIQBA%253D%253D");
+            await _searchResults.WaitForProgressBarToDisappear();
+            await _searchResults.VerifyMovieLabel();
+        }
+        else
+        {
+            throw new ArgumentException($"Unknown filter type: {filterType}");
+        }
     }
 }
