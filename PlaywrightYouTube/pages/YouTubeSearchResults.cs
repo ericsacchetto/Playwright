@@ -117,7 +117,15 @@ namespace PlaywrightYouTube.Pages
 
         public async Task VerifyMovieLabel()
         {
+            // Verify the YouTube Movies label is visible
             await _page.GetByText("YouTube Movies").First.IsVisibleAsync();
+            
+            // Get the first movie result and extract its title for debugging
+            // Movies are in ytd-movie-renderer, not ytd-video-renderer
+            var firstMovie = _page.Locator("ytd-movie-renderer").First;
+            var titleElement = firstMovie.Locator("a#video-title");
+            var movieTitle = await titleElement.GetAttributeAsync("title");
+            Console.WriteLine($"[DEBUG] Found movie: '{movieTitle}'");
         }
 
         public async Task WaitForProgressBarToDisappear()
